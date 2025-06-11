@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="shortcut icon" href="https://brighthorizonsmedia.com/wp-content/uploads/2017/12/favicon.png" />
+	<link href='https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap' rel='stylesheet'>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	<style type="text/css">
+		:root {
+			--primary-color: #487977;
+			--text-color: #2c3e50;
+			--light-bg: #f8f9fa;
+			--border-color: #e9ecef;
+			--spacing-unit: 1rem;
+		}
+
+		body {
+			font-family: 'Nunito', sans-serif;
+			line-height: 1.6;
+			text-align: center;
+			background-color: #e7e7e6;
+			color: var(--text-color);
+			font-size: 16px;
+		}
+
+		h1, h2, h3, h4, h5, h6 {
+			font-weight: 700;
+			margin-bottom: var(--spacing-unit);
+			color: var(--text-color);
+		}
+
+		h3 {
+			font-size: 1.75rem;
+			margin-top: 2rem;
+            margin-bottom: 2rem;
+		}
+
+		h5 {
+			font-size: 1.25rem;
+			margin-top: 1.5rem;
+		}
+
+        h6 {
+            margin-top: 1.5rem;
+        }
+
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 0 15px;
+		}
+
+		.browser-window {
+			text-align: left;
+			margin: 2rem auto;
+			width: 100%;
+			max-width: 1200px;
+			min-height: 500px;
+			display: inline-block;
+			border-radius: 8px;
+			background-color: #fff;
+			padding-bottom: 2rem;
+			box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+		}
+
+		.browser-window .top-bar {
+			height: 30px;
+			border-radius: 8px 8px 0 0;
+			border-top: thin solid var(--border-color);
+			border-bottom: thin solid var(--border-color);
+			background: #878b89;
+		}
+
+		.browser-window .circle {
+			height: 8px;
+			width: 8px;
+			display: inline-block;
+			border-radius: 50%;
+			background-color: white;
+			margin-right: 4px;
+		}
+
+		.browser-window .circles {
+			margin: 5px 11px;
+		}
+
+		.browser-window .content {
+			margin: 0;
+			width: 100%;
+			min-height: 50%;
+			display: inline-block;
+			border-radius: 0 0 8px 8px;
+			background-color: #fff;
+			padding: 2rem;
+		}
+
+		.browser-window .dev-tools {
+			width: 100%;
+			min-height: 50%;
+			margin: 0;
+			margin-top: 2rem;
+		}
+
+		.browser-window .dev-tools .bar {
+			border-top: thin solid var(--border-color);
+			border-bottom: thin solid var(--border-color);
+			color: var(--text-color);
+			background-color: var(--light-bg);
+			padding: 0.75rem 1rem;
+			font-weight: 600;
+		}
+
+		.browser-window .dev-tools .bar .dev-bar-content {
+			padding: 0;
+			float: left;
+			color: var(--text-color);
+		}
+
+		.browser-window .dev-tools .content .html {
+			height: 100%;
+			width: 100%;
+			padding: 1rem 0;
+		}
+
+		.code {
+			background-color: #1e1e1e;
+			color: #eaeae9;
+			font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Menlo', 'Monaco', 'Consolas', monospace;
+			padding: 1.5rem;
+			margin: 1rem 0;
+			max-width: 100%;
+			overflow-wrap: anywhere;
+			position: relative;
+			border-radius: 6px;
+			font-size: 14px;
+			line-height: 1.5;
+			letter-spacing: -0.02em;
+		}
+
+		.code-copy {
+			position: absolute;
+			top: 0.75rem;
+			right: 0.75rem;
+			background: rgba(255, 255, 255, 0.1);
+			border: none;
+			color: white;
+			padding: 0.5rem 0.75rem;
+			border-radius: 4px;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			font-size: 14px;
+		}
+
+		.code-copy:hover {
+			background: rgba(255, 255, 255, 0.2);
+		}
+
+		.code-copy.copied {
+			background: #28a745;
+		}
+
+		.clear {
+			clear: both;
+		}
+
+		img {
+			max-width: 100%;
+			height: auto;
+		}
+
+		.message-box {
+			margin: 1.5rem 0;
+			text-align: left;
+			display: flex;
+			align-items: flex-start;
+			gap: 1rem;
+			padding: 1.25rem;
+			border-radius: 8px;
+			border: none;
+			background-color: var(--light-bg);
+			background-image: repeating-linear-gradient(to right, var(--primary-color) 0, var(--primary-color) 8px, transparent 8px, transparent 16px),
+							repeating-linear-gradient(to bottom, var(--primary-color) 0, var(--primary-color) 8px, transparent 8px, transparent 16px),
+							repeating-linear-gradient(to left, var(--primary-color) 0, var(--primary-color) 8px, transparent 8px, transparent 16px),
+							repeating-linear-gradient(to top, var(--primary-color) 0, var(--primary-color) 8px, transparent 8px, transparent 16px);
+			background-position: top, right, bottom, left;
+			background-size: 100% 2px, 2px 100%, 100% 2px, 2px 100%;
+			background-repeat: no-repeat;
+		}
+
+		.message-box i {
+			font-size: 1.5rem;
+			color: var(--primary-color);
+			flex-shrink: 0;
+            margin-top: 0.25rem;
+		}
+
+		.message-box-text {
+			font-weight: 400;
+			font-size: 0.9375rem;
+			line-height: 1.5;
+			letter-spacing: 0.01em;
+			color: var(--primary-color);
+		}
+
+		.text-start {
+			margin: 0 auto 15px;
+			text-align: left !important;
+		}
+
+		@media (max-width: 768px) {
+			body {
+				font-size: 15px;
+			}
+
+			.browser-window {
+				margin: 1rem;
+				padding-bottom: 1rem;
+			}
+
+			.browser-window .content {
+				padding: 1rem;
+			}
+
+			.browser-window .dev-tools {
+				padding: 0 1rem;
+			}
+
+			.code {
+				font-size: 13px;
+				padding: 1rem;
+			}
+
+			.message-box {
+				padding: 1rem;
+				margin: 1rem 0;
+			}
+
+			.message-box i {
+				font-size: 1.25rem;
+			}
+
+			.message-box-text {
+				font-size: 0.875rem;
+			}
+
+			h3 {
+				font-size: 1.5rem;
+			}
+
+			h5 {
+				font-size: 1.125rem;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<main align="center">
+		<div class="container">
+			<header class="d-flex flex-wrap justify-content-center py-3 mb-4">
+				<a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+					<img src="https://brighthorizonsmedia.com/wp-content/uploads/2018/01/bhm-logo2x.png" class="img-fluid" style="max-width: 300px;" />
+				</a>
+			</header>
+		</div>
+		<div class="container" align="center">
+			<h3 class="fw-bold">BrightOffers v2.5 Integration Guide</h3>
+				<h5 class="text-start"><span class="fw-bold">Campaign Name:</span> SmartDebtPros.com > TYP</h5>
+				<h5 class="text-start"><span class="fw-bold">Campaign Key:</span> e3967207f42c-5666-7e5e-4ac7-4775-9addc585</h5>
+				<h5 class="text-start"><span class="fw-bold">Affiliate:</span> Bright Horizons Media  (TEST ACCOUNT) (2)</h5>
+				<div class="text-start">
+					Note: The creative(s) displayed below were designed to match the look and feel of your site while leveraging the CSS on your site. Since we can not load your CSS here in this integration, rest assured that the creative(s) will adjust (look better) when integrated on your page(s).
+				</div>
+		</div>
+		<div class="container">
+			<div class='browser-window'>
+				<div class='top-bar'>
+					<div class='circles'>
+						<div class="circle circle-red"></div>
+						<div class="circle circle-yellow"></div>
+						<div class="circle circle-green"></div>
+					</div>
+				</div>
+				<div class='content'>
+					<div class="bhm-offer" data-id="e3967207f42c-5666-7e5e-4ac7-4775-9addc585" data-afid="2"></div>
+				</div>
+				
+				<div class="dev-tools">
+					<div class="bar">
+						<div class="dev-bar-content" style="">Implementing BrightOffers</div>
+						<div class="clear"></div>
+					</div>
+					<div class="content">
+						Only 2 simple steps are needed to allow BrightOffers to deliver offers on your pages.
+						<!--<div class="ms-2"><span class="fw-bold">Step 1:</span> Place the BrightOffers HTML code</div>
+						<div class="ms-2"><span class="fw-bold">Step 2:</span> Place the BrightOffers JavaScript code at the bottom of your page right before the closing &#60;/body&#62; tag</div>-->
+
+						<h5 class="fw-bold">Step 1: Placing the BrightOffers HTML Code</h5>
+						<div>
+							Copy/paste the code directly below into your page(s) where you want BrightOffers to display offers.
+						</div>
+						<div class="html">
+							<div class="code">
+								&lt;div class=&quot;bhm-offer&quot; data-id=&quot;e3967207f42c-5666-7e5e-4ac7-4775-9addc585&quot; data-afid=&quot;2&quot;&gt;&lt;/div&gt;							</div>
+						</div>
+
+						<h5 class="fw-bold mt-2">Step 2: Placing the BrightOffers JavaScript Code</h5>
+						<div>
+							Copy/paste the code directly at the bottom of your page(s) right before the closing &#60;/body&#62; tag.
+						</div>
+						<h6 class="fw-bold">Pre-popping</h6>
+						<div>
+							Included below is JavaScript that allows you to pre-pop offers to help increase conversion rates. Simply replace the placeholders and the surronding brackets with the consumer information. If you choose not to leverage pre-popping, you can simply omit the additional JavaScript (which begins with START BRIGHTOFFERS PRE-POP and ends with END BRIGHTOFFERS PRE-POP).
+						</div>
+                        <div class="message-box">
+                            <i class="fas fa-info-circle"></i>
+                            <span class="message-box-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu diam dui. Aliquam feugiat, quam id accumsan vehicula, elit augue tempus tortor, non vehicula dolor enim id neque.</span>
+                        </div>
+						<div class="mt-2">
+							<span class="fw-bold">Important:</span> Pre-popping is only used to pre-pop the outbound clicks. We do not log this information or market the pre-pop data in any way.
+						</div>
+
+						<div class="html">
+							<div class="code">
+								&lt;!-- START BRIGHTOFFERS PRE-POP --&gt;<br />&lt;script type=&quot;text/javascript&quot;&gt;<br />var bhm_firstname = &quot;[INSERT_FIRSTNAME]&quot;;<br />var bhm_lastname = &quot;[INSERT_LASTNAME]&quot;;<br />var bhm_phone = &quot;[INSERT_PHONE]&quot;;<br />var bhm_email = &quot;[INSERT_EMAIL]&quot;;<br />var bhm_address = &quot;[INSERT_ADDRESS]&quot;;<br />var bhm_city = &quot;[INSERT_CITY]&quot;;<br />var bhm_state = &quot;[INSERT_STATE]&quot;;<br />var bhm_zip = &quot;[INSERT_ZIP]&quot;;<br />var bhm_sub1 = &quot;[INSERT_SUB1]&quot;;<br />var bhm_sub2 = &quot;[INSERT_SUB2]&quot;;<br />&lt;/script&gt;<br />&lt;!-- END BRIGHTOFFERS PRE-POP --&gt;<br />&lt;script src=&quot;https://get.brightoffers.io/js/get.js?v2.5&quot; defer=&quot;&quot;&gt;&lt;/script&gt;
+							</div>
+						</div>
+												<h5 class="fw-bold mt-2">Step 3: Styling</h5>
+						<div style="margin-top:10px;">
+							<span class="fw-bold">Option #1:</span> If your team is able to handle adding styling to the ads to match and look and feel of your site, below is the general structure of how ads may be displayed on your pages.
+						</div>
+						<div style="margin-top:10px;">
+							<span class="fw-bold">Notes:</span>
+							<ul>
+								<li>BrightOffers returns some basic styling but you can easily override any styling by including your CSS after the #bhm-offer element.</li>
+								<li>Additional data attributes and inline styles may be returned but are excluded below.</li>
+								<li>If an alement has a class, it means there may be one or more of those elements returned.</li>
+								<li>Elements with id unique and you will only find one element with that id.</li>
+								<li>Depending on the setup, you may find that one or more elements below are not found; thats ok and is to be expected.</li>
+							</ul>
+						</div>
+						<div class="html">
+							<div class="code" style="font-size: 13px;">
+								&lt;div class=&quot;bhm-offer&quot; data-id=&quot;e3967207f42c-5666-7e5e-4ac7-4775-9addc585&quot; data-afid=&quot;2&quot;&gt;<br />&nbsp;&nbsp;&lt;style&gt;...&lt;/style&gt;<br />&nbsp;&nbsp;&lt;div class=&quot;bhm-ad-unit-headline&quot;&gt;&lt;/div&gt;<br />&nbsp;&nbsp;&lt;div class=&quot;bhm-ad-unit-subheadline&quot;&gt;&lt;/div&gt;<br />&nbsp;&nbsp;&lt;div class=&quot;bhm-container-offers&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-container&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-headline&quot;&gt;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-subheadline&quot;&gt;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-text&quot;&gt;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-cta&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=&quot;bhm-offer-cta&quot; target=&quot;_blank&quot; class=&quot;bhm-btn bhm-btn-primary bhm-btn-offer&quot;&gt;&lt;/a&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-disclaimer&quot;&gt;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class=&quot;bhm-btn-skip&quot;&gt;&lt;/span&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-container&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-headline&quot;&gt;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-subheadline&quot;&gt;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-with-image&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-with-image&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-image-img&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=&quot;&quot; target=&quot;_blank&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=&quot;&quot; /&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-image-text&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-cta&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=&quot;&quot; target=&quot;_blank&quot;&gt;&lt;/a&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-container-path-wall&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-container&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-headline&quot;&gt;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-subheadline&quot;&gt;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-with-image&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-with-image&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-image-img&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=&quot;&quot; target=&quot;_blank&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=&quot;&quot; /&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-image-text&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bhm-offer-cta&quot;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=&quot;&quot; target=&quot;_blank&quot;&gt;&lt;/a&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />&nbsp;&nbsp;&lt;/div&gt;<br />&lt;/div&gt;							</div>
+						</div>
+						<div style="margin-top:10px;">
+							<span class="fw-bold">Option #2:</span> If you need assistance the styling of the ads that are returned, simply reach out to your Account Manager and we'll handle everything for you.
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+
+		</div>
+	</main>
+	<script type="text/javascript">
+		var bhm_firstname = 'Bob';
+		var bhm_lastname = 'Smith';
+		var bhm_phone = '8105551212';
+		var bhm_email = 'example@example.com';
+		var bhm_address = '123 happy lane';
+		var bhm_city = 'Anytown';
+		var bhm_state = 'CA';
+		var bhm_zip = 90210;
+		var bhm_sub1 = '';
+		var bhm_sub2 = '';
+		var bhm_sourceid = '';
+	</script>
+	<script src="https://get.brightoffers.io/js/get.js?v2.5" defer=""></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<script>
+		// Copy functionality
+		document.querySelectorAll('.code').forEach(codeBlock => {
+			const copyButton = document.createElement('button');
+			copyButton.className = 'code-copy';
+			copyButton.innerHTML = '<i class="fas fa-copy"></i>';
+			
+			copyButton.addEventListener('click', async () => {
+				const code = codeBlock.textContent.trim();
+				try {
+					await navigator.clipboard.writeText(code);
+					copyButton.innerHTML = '<i class="fas fa-check"></i>';
+					copyButton.classList.add('copied');
+					
+					setTimeout(() => {
+						copyButton.innerHTML = '<i class="fas fa-copy"></i>';
+						copyButton.classList.remove('copied');
+					}, 2000);
+				} catch (err) {
+					console.error('Failed to copy text: ', err);
+				}
+			});
+			
+			codeBlock.appendChild(copyButton);
+		});
+
+		// Existing scripts
+		const iel = async selector => {
+			while (document.querySelector(selector) === null) {
+				await new Promise(resolve => requestAnimationFrame(resolve))
+			}
+			return document.querySelector(selector);
+		};
+
+		let ooo = new IntersectionObserver(function(entries, obs) {
+			entries.forEach(function(entry) {
+				if (!entry.isIntersecting) return;
+				obs.unobserve(entry.target);
+				irt(entry.target.dataset.bhmAdid);
+			});
+		});
+
+		iel('#bhm-container-offers').then((selector) => {
+			const as = document.getElementsByTagName("a");
+			for (const a of as) {
+				a.removeAttribute("href")
+			}
+		});
+	</script>
+</body>
+
+
+</html>
